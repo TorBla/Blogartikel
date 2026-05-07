@@ -1,0 +1,14 @@
+// Diese Datei gehört zum Blogartikel "Excel als Datenquelle in Power BI (Web)".
+// Kopiere den Code und füge ihn im Power Query Editor unter "Erweiterter Editor" ein,
+// um die Datei aus OneDrive korrekt anzubinden (ohne Gateway).
+
+let
+    Quelle = Excel.Workbook(
+        //Hier bitte deinen Linl eintragem
+        Web.Contents("https://xxx-my.sharepoint.com/personal/vorname_nachname_net/Documents/Tabellenname.xlsx"),
+        null,
+        true
+    ), //Sollte die Blatt in Excel einen Namen haben dann bitte hier eintragen 
+    Tabelle = Quelle{[Item="Blattname",Kind="Sheet"]}[Data]
+in
+    Tabelle
